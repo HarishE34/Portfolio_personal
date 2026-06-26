@@ -4,7 +4,8 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' })); // your React port
+app.use(cors({
+  origin: "https://portfolio-personal-eight-nu.vercel.app"})); // your React port
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({
