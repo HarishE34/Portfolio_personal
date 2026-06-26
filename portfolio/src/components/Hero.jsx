@@ -1,22 +1,24 @@
 import { useTypewriter } from '../hooks';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Hero.module.css';
 
 const ROLES = ['Full-Stack Developer', 'Mobile App Builder', 'CS Student @ RMK', 'Hackathon Finalist'];
 
 const CODE_LINES = [
+  { token: 'comment',  text: '// harish.js — loading developer...' },
+  { token: 'newline',  text: '' },
   { token: 'keyword',  text: 'const ' },
   { token: 'var',      text: 'harish' },
   { token: 'op',       text: ' = {' },
   { token: 'newline',  text: '' },
+  { token: 'key',      text: '  name' },
+  { token: 'op',       text: ': ' },
+  { token: 'string',   text: '"Harish Elango"' },
+  { token: 'op',       text: ',' },
+  { token: 'newline',  text: '' },
   { token: 'key',      text: '  role' },
   { token: 'op',       text: ': ' },
   { token: 'string',   text: '"Full-Stack Dev"' },
-  { token: 'op',       text: ',' },
-  { token: 'newline',  text: '' },
-  { token: 'key',      text: '  college' },
-  { token: 'op',       text: ': ' },
-  { token: 'string',   text: '"R.M.K Engg"' },
   { token: 'op',       text: ',' },
   { token: 'newline',  text: '' },
   { token: 'key',      text: '  cgpa' },
@@ -26,77 +28,123 @@ const CODE_LINES = [
   { token: 'newline',  text: '' },
   { token: 'key',      text: '  skills' },
   { token: 'op',       text: ': [' },
-  { token: 'newline',  text: '' },
-  { token: 'string',   text: '    "React"' },
+  { token: 'string',   text: '"React"' },
   { token: 'op',       text: ', ' },
   { token: 'string',   text: '"Node.js"' },
-  { token: 'op',       text: ',' },
-  { token: 'newline',  text: '' },
-  { token: 'string',   text: '    "MySQL"' },
   { token: 'op',       text: ', ' },
-  { token: 'string',   text: '"Firebase"' },
-  { token: 'newline',  text: '' },
-  { token: 'op',       text: '  ],' },
+  { token: 'string',   text: '"MySQL"' },
+  { token: 'op',       text: '],' },
   { token: 'newline',  text: '' },
   { token: 'key',      text: '  status' },
   { token: 'op',       text: ': ' },
   { token: 'string',   text: '"Open to work 🚀"' },
+  { token: 'op',       text: ',' },
   { token: 'newline',  text: '' },
-  { token: 'op',       text: '}' },
+  { token: 'key',      text: '  passion' },
+  { token: 'op',       text: ': ' },
+  { token: 'string',   text: '"Building real things"' },
+  { token: 'newline',  text: '' },
+  { token: 'op',       text: '};' },
+  { token: 'newline',  text: '' },
+  { token: 'newline',  text: '' },
+  { token: 'keyword',  text: 'console' },
+  { token: 'op',       text: '.' },
+  { token: 'var',      text: 'log' },
+  { token: 'op',       text: '(' },
+  { token: 'string',   text: '"Ready to build 💪"' },
+  { token: 'op',       text: ');' },
+];
+
+const BADGES = [
+  { label: '⚛️ React',    cls: 'badge1' },
+  { label: '🛠️ Node.js',  cls: 'badge2' },
+  { label: '🔥 Firebase', cls: 'badge3' },
+  { label: '☕ Java',     cls: 'badge4' },
 ];
 
 function AnimatedCode() {
   const ref = useRef(null);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     el.innerHTML = '';
+    setDone(false);
     let i = 0;
     let lineEl = document.createElement('div');
     lineEl.className = styles.codeLine;
     el.appendChild(lineEl);
 
+    // blinking cursor span
+    const cursor = document.createElement('span');
+    cursor.className = styles.cursor;
+    cursor.textContent = '█';
+    lineEl.appendChild(cursor);
+
     const interval = setInterval(() => {
-      if (i >= CODE_LINES.length) { clearInterval(interval); return; }
+      if (i >= CODE_LINES.length) {
+        clearInterval(interval);
+        cursor.remove();
+        setDone(true);
+        return;
+      }
       const { token, text } = CODE_LINES[i];
       if (token === 'newline') {
+        cursor.remove();
         lineEl = document.createElement('div');
         lineEl.className = styles.codeLine;
         el.appendChild(lineEl);
+        lineEl.appendChild(cursor);
       } else {
         const span = document.createElement('span');
         span.className = styles[token] || '';
         span.textContent = text;
-        lineEl.appendChild(span);
+        lineEl.insertBefore(span, cursor);
       }
       i++;
-    }, 60);
+      el.parentElement.scrollTop = el.parentElement.scrollHeight;
+    }, 55);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className={styles.terminal}>
+      {/* traffic light dots */}
       <div className={styles.terminalHeader}>
-        <span className={styles.dot1} />
-        <span className={styles.dot2} />
-        <span className={styles.dot3} />
+        <div className={styles.trafficLights}>
+          <span className={styles.tl1} />
+          <span className={styles.tl2} />
+          <span className={styles.tl3} />
+        </div>
         <span className={styles.fileName}>harish.js</span>
+        <span className={styles.branch}>main</span>
       </div>
+
       <div className={styles.terminalBody}>
+        {/* line numbers */}
         <div className={styles.lineNumbers}>
-          {Array.from({length: 14}, (_, i) => (
+          {Array.from({ length: 16 }, (_, i) => (
             <span key={i}>{i + 1}</span>
           ))}
         </div>
         <div className={styles.codeArea} ref={ref} />
       </div>
-      {/* floating badges */}
-      <div className={`${styles.badge} ${styles.badge1}`}>⚛️ React</div>
-      <div className={`${styles.badge} ${styles.badge2}`}>🛠️ Node.js</div>
-      <div className={`${styles.badge} ${styles.badge3}`}>🔥 Firebase</div>
-      <div className={`${styles.badge} ${styles.badge4}`}>☕ Java</div>
+
+      {/* bottom status bar */}
+      <div className={styles.statusBar}>
+        <span>JS</span>
+        <span>{done ? '✓ compiled' : '⟳ typing...'}</span>
+        <span>UTF-8</span>
+      </div>
+
+      {/* floating skill badges */}
+      {BADGES.map(b => (
+        <div key={b.cls} className={`${styles.badge} ${styles[b.cls]}`}>
+          {b.label}
+        </div>
+      ))}
     </div>
   );
 }
@@ -121,7 +169,7 @@ export default function Hero() {
 
         <h1 className={styles.name}>
           Hi, I'm<br />
-          <span>HARISH ELANGO</span>
+          <span>Harish Elango</span>
         </h1>
 
         <p className={styles.tagline}>
