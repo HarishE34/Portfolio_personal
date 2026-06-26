@@ -1,0 +1,21 @@
+.about {
+  padding: 6rem 4rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  border-top: 1px solid var(--border);
+  position: relative; z-index: 1;
+}
+.text { color: var(--muted); line-height: 1.8; font-size: .95rem; }
+.text p + p { margin-top: 1rem; }
+.text strong { color: var(--text); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.statCard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  transition: border-color .2s, transform .2s;
+}
+.statCard:hover { border-color: var(--accent); transform: translateY(-4px); }
+.statNumber { font-size: 2.2rem; font-weight: 700; color: var(--accent); font-family: var(--font-mono); line-height: 1; }
+.statLabel  { font-size: .8rem; color: var(--muted); margin-top: .3rem; }
+
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.5rem; } }

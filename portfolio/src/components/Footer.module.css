@@ -1,0 +1,9 @@
+.footer {
+  padding: 2rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .8rem; color: var(--muted);
+  position: relative; z-index: 1;
+  font-family: var(--font-mono);
+}
+@media (max-width: 900px) { .footer { padding: 2rem 1.5rem; } }

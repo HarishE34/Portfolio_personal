@@ -1,0 +1,105 @@
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 4rem 4rem;
+  overflow: hidden;
+  position: relative; z-index: 1;
+}
+.glow1 {
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,212,255,.12) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.glow2 {
+  position: absolute; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124,58,237,.1) 0%, transparent 70%);
+  top: 30%; right: 10%;
+  animation: pulse 5s ease-in-out infinite .8s;
+  pointer-events: none;
+}
+@keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+.content { max-width: 780px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem .9rem;
+  border: 1px solid rgba(0,212,255,.3);
+  border-radius: 100px;
+  font-size: .75rem; color: var(--accent);
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp .6s .1s forwards;
+}
+.dot {
+  width: 7px; height: 7px;
+  background: var(--accent); border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+.eyebrow {
+  font-family: var(--font-mono); font-size: .8rem;
+  color: var(--accent); letter-spacing: .15em; text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp .6s .2s forwards;
+  min-height: 1.2em;
+}
+.typewriter {
+  border-right: 2px solid var(--accent);
+  padding-right: 2px;
+  animation: blink-cursor .7s step-end infinite;
+}
+@keyframes blink-cursor { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+
+.name {
+  font-size: clamp(3rem,7vw,5.5rem);
+  font-weight: 700; line-height: 1.05; letter-spacing: -.02em;
+  margin-bottom: 1rem;
+  opacity: 0; animation: fadeUp .6s .4s forwards;
+}
+.name span {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.tagline {
+  font-size: 1.2rem; color: var(--muted); max-width: 520px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp .6s .6s forwards;
+}
+.tagline strong { color: var(--text); font-weight: 500; }
+
+.actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .6s .8s forwards;
+}
+.btnPrimary {
+  padding: .75rem 2rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; border-radius: 6px; font-weight: 600; font-size: .9rem;
+  transition: opacity .2s, transform .2s;
+}
+.btnPrimary:hover { opacity: .85; transform: translateY(-2px); }
+.btnOutline {
+  padding: .75rem 2rem;
+  border: 1px solid var(--border); border-radius: 6px;
+  font-size: .9rem; color: var(--text);
+  transition: border-color .2s, transform .2s;
+}
+.btnOutline:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+.scrollHint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  color: var(--muted); font-size: .7rem; letter-spacing: .1em;
+  animation: bounce 2s infinite;
+}
+.scrollHint::after {
+  content: ''; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+@media (max-width: 900px) { .hero { padding: 5rem 1.5rem; } }
+@media (max-width: 600px) { .name { font-size: 2.2rem; } }
