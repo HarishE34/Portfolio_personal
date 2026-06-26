@@ -1,7 +1,7 @@
 import { useTypewriter } from '../hooks';
 import styles from './Hero.module.css';
 
-const ROLES = ['Full-Stack Developer', 'Mobile App Builder', 'CS Student @ RMK', 'Hackathon Finalist'];
+const ROLES = ['Full-Stack Developer', 'Mobile App Builder', 'IT Student @ RMK', 'Hackathon Finalist'];
 
 export default function Hero() {
   const typed = useTypewriter(ROLES);
