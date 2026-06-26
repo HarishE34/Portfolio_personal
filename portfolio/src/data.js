@@ -9,7 +9,7 @@ export const DATA = {
   cgpa: "7.72",
 
   about: [
-    `I'm a pre-final year <strong>Information Technology</strong> student at R.M.K Engineering College with a CGPA of 7.72. I build across the full stack — from React frontends to Node.js backends — with growing experience in mobile apps and cybersecurity.`,
+    `I'm a pre-final year <strong>Information Technology</strong> student at R.M.K Engineering College. I build across the full stack — from React frontends to Node.js backends — with growing experience in mobile apps and cybersecurity.`,
     `Frontend Developer Intern at <strong>Vyoobam Tech</strong>, where I built responsive React pages and gained hands-on experience in component-based design and professional workflows.`,
     `Hackathon finalist at the <strong>TN Police Hackathon</strong> where I built TOR-Unveil, a full-stack cybersecurity platform to analyze anonymized TOR traffic. Certified in IoT (NPTEL) and Climate Risk & Sustainable Development.`,
   ],
