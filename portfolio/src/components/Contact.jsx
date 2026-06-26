@@ -1,36 +1,41 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { DATA } from '../data';
 import styles from './Contact.module.css';
 
 const LINKS = [
-  { icon: '📧', label: 'Email', value: DATA.email },
-  { icon: '📱', label: 'Phone', value: DATA.phone },
+  { icon: '📧', label: 'Email',    value: DATA.email },
+  { icon: '📱', label: 'Phone',    value: DATA.phone },
   { icon: '📍', label: 'Location', value: DATA.location },
-  { icon: '🎓', label: 'College', value: DATA.college },
+  { icon: '🎓', label: 'College',  value: DATA.college },
   { icon: '💼', label: 'LinkedIn', value: DATA.linkedin },
-  { icon: '🐙', label: 'GitHub', value: DATA.github },
+  { icon: '🐙', label: 'GitHub',   value: DATA.github },
 ];
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', msg: '' });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.msg) { alert('Please fill all fields.'); return; }
     setLoading(true);
     try {
-      c// ✅ Fix
-      const res = await fetch('https://portfolio-personal-23dx.onrender.com/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setSent(true);
-        setForm({ name: '', email: '', msg: '' });
-        setTimeout(() => setSent(false), 4000);
-      }
+      await emailjs.send(
+        'service_w3s1hg6',    // ← paste your Service ID
+        'template_yy43f4g',   // ← paste your Template ID
+        {
+          from_name:  form.name,
+          from_email: form.email,
+          message:    form.msg,
+        },
+        'cqXoODjK4hG1JCKMW'     // ← paste your Public Key
+      );
+      setSent(true);
+      setForm({ name: '', email: '', msg: '' });
+      setTimeout(() => setSent(false), 4000);
     } catch (err) {
+      console.error(err);
       alert('Failed to send. Try again later.');
     } finally {
       setLoading(false);
