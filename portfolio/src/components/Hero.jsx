@@ -121,7 +121,7 @@ export default function Hero() {
 
         <h1 className={styles.name}>
           Hi, I'm<br />
-          <span>Harish ELANGO</span>
+          <span>HARISH ELANGO</span>
         </h1>
 
         <p className={styles.tagline}>
