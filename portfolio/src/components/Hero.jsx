@@ -2,7 +2,7 @@ import { useTypewriter } from '../hooks';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Hero.module.css';
 
-const ROLES = ['Full-Stack Developer', 'Mobile App Builder', 'CS Student @ RMK', 'Hackathon Finalist'];
+const ROLES = ['Full-Stack Developer', 'Mobile App Builder', 'IT Student @ RMK', 'Hackathon Finalist'];
 
 const CODE_LINES = [
   { token: 'comment',  text: '// harish.js — loading developer...' },
