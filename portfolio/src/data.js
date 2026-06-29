@@ -26,13 +26,13 @@ export const DATA = {
     icon: "⚛️", name: "Frontend Development",
     desc: "Building responsive UIs with React.js, component-based design, hooks, and modern JavaScript.",
     tags: ["React.js","HTML","CSS","JavaScript"],
-    level: 80, levelLabel: "Intermediate"
+    level: 80, levelLabel: "comfortable"
   },
   {
     icon: "🛠️", name: "Backend Development",
     desc: "REST APIs, database design, and server-side logic with Node.js, Express.js, and MySQL.",
     tags: ["Node.js","Express.js","MySQL","Sequelize"],
-    level: 70, levelLabel: "Intermediate"
+    level: 70, levelLabel: "comfortable"
   },
   {
     icon: "📱", name: "Mobile Development",
@@ -56,7 +56,7 @@ export const DATA = {
     icon: "🧰", name: "Tools & Workflow",
     desc: "Version control, design tools, and professional development workflow.",
     tags: ["Git","VS Code","Canva"],
-    level: 70, levelLabel: "Comfortable"
+    level: 80, levelLabel: "Co"
   },
 ],
 
