@@ -22,13 +22,43 @@ export const DATA = {
   ],
 
   skills: [
-    { icon: "⚛️", name: "Frontend Development",  desc: "Building responsive, interactive UIs with React.js, component-based design, and modern JavaScript.", tags: ["React.js","HTML","CSS","JavaScript"] },
-    { icon: "🛠️", name: "Backend Development",   desc: "REST APIs, database design, and server-side logic with Node.js, Express.js, and MySQL.",           tags: ["Node.js","Express.js","MySQL","Sequelize"] },
-    { icon: "📱", name: "Mobile Development",    desc: "Cross-platform mobile apps with React Native, Firebase Firestore, and React Navigation.",             tags: ["React Native","Firebase","Expo","React Navigation"] },
-    { icon: "🔐", name: "Cybersecurity",         desc: "Analyzing anonymized network traffic, multi-factor correlation, and building security platforms.",     tags: ["TOR Analysis","Network Security","Full-Stack"] },
-    { icon: "☕", name: "Core Programming",      desc: "Strong foundation in Java — data structures, algorithms, OOP, and competitive problem solving.",       tags: ["Java","DSA","OOP","Problem Solving"] },
-    { icon: "🧰", name: "Tools & Workflow",      desc: "Professional development workflow with version control, design tools, and modern editors.",            tags: ["Git","VS Code","Canva"] },
-  ],
+  {
+    icon: "⚛️", name: "Frontend Development",
+    desc: "Building responsive UIs with React.js, component-based design, hooks, and modern JavaScript.",
+    tags: ["React.js","HTML","CSS","JavaScript"],
+    level: 80, levelLabel: "Intermediate"
+  },
+  {
+    icon: "🛠️", name: "Backend Development",
+    desc: "REST APIs, database design, and server-side logic with Node.js, Express.js, and MySQL.",
+    tags: ["Node.js","Express.js","MySQL","Sequelize"],
+    level: 70, levelLabel: "Intermediate"
+  },
+  {
+    icon: "📱", name: "Mobile Development",
+    desc: "Cross-platform mobile apps with React Native, Firebase Firestore, and React Navigation.",
+    tags: ["React Native","Firebase","Expo","React Navigation"],
+    level: 65, levelLabel: "Learning"
+  },
+  {
+    icon: "🔐", name: "Cybersecurity",
+    desc: "Analyzing anonymized TOR network traffic, multi-factor correlation, TN Police Hackathon finalist.",
+    tags: ["TOR Analysis","Network Security","Full-Stack"],
+    level: 40, levelLabel: "Exploring"
+  },
+  {
+    icon: "☕", name: "Core Programming",
+    desc: "Java fundamentals, OOP, data structures, algorithms, and problem solving.",
+    tags: ["Java","DSA","OOP","Problem Solving"],
+    level: 75, levelLabel: "Intermediate"
+  },
+  {
+    icon: "🧰", name: "Tools & Workflow",
+    desc: "Version control, design tools, and professional development workflow.",
+    tags: ["Git","VS Code","Canva"],
+    level: 70, levelLabel: "Comfortable"
+  },
+],
 
   projects: [
     {

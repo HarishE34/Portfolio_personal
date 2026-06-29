@@ -94,3 +94,21 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ── BACKGROUND TECH ICONS ── */
+#bg-icons {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+#bg-icons > div {
+  opacity: 0.22;
+  transition: transform .05s linear;
+}
+#bg-icons > div:hover {
+  opacity: 0.35;
+}
+#bg-icons svg {
+  display: block;
+}

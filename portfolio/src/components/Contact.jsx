@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { DATA } from '../data';
 import styles from './Contact.module.css';
 
 const LINKS = [
-  { icon: '📧', label: 'Email',    value: DATA.email },
-  { icon: '📱', label: 'Phone',    value: DATA.phone },
-  { icon: '📍', label: 'Location', value: DATA.location },
-  { icon: '🎓', label: 'College',  value: DATA.college },
-  { icon: '💼', label: 'LinkedIn', value: DATA.linkedin },
-  { icon: '🐙', label: 'GitHub',   value: DATA.github },
+  { icon: '📧', label: 'Email',    value: DATA.email,    href: `mailto:${DATA.email}` },
+  { icon: '📱', label: 'Phone',    value: DATA.phone,    href: `tel:${DATA.phone}` },
+  { icon: '📍', label: 'Location', value: DATA.location, href: 'https://maps.google.com/?q=Mayiladuthurai,Tamil+Nadu' },
+  { icon: '🎓', label: 'College',  value: DATA.college,  href: 'https://www.rmkec.ac.in' },
+  { icon: '💼', label: 'LinkedIn', value: DATA.linkedin, href: 'https://www.linkedin.com/in/harish-e-87a81a290' },
+  { icon: '🐙', label: 'GitHub',   value: DATA.github,   href: 'https://github.com/HarishE34' },
 ];
 
 export default function Contact() {
@@ -21,21 +20,17 @@ export default function Contact() {
     if (!form.name || !form.email || !form.msg) { alert('Please fill all fields.'); return; }
     setLoading(true);
     try {
-      await emailjs.send(
-        'service_w3s1hg6',    // ← paste your Service ID
-        'template_yy43f4g',   // ← paste your Template ID
-        {
-          from_name:  form.name,
-          from_email: form.email,
-          message:    form.msg,
-        },
-        'cqXoODjK4hG1JCKMW'     // ← paste your Public Key
-      );
-      setSent(true);
-      setForm({ name: '', email: '', msg: '' });
-      setTimeout(() => setSent(false), 4000);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: '', email: '', msg: '' });
+        setTimeout(() => setSent(false), 4000);
+      }
     } catch (err) {
-      console.error(err);
       alert('Failed to send. Try again later.');
     } finally {
       setLoading(false);
@@ -52,13 +47,20 @@ export default function Contact() {
         </p>
         <div className={styles.links}>
           {LINKS.map(l => (
-            <div key={l.label} className={styles.link}>
+            <a
+              key={l.label}
+              href={l.href}
+              target={l.label === 'Email' || l.label === 'Phone' ? '_self' : '_blank'}
+              rel="noreferrer"
+              className={styles.link}
+            >
               <span className={styles.linkIcon}>{l.icon}</span>
               <div>
                 <span className={styles.linkLabel}>{l.label}</span>
                 <span className={styles.linkValue}>{l.value}</span>
               </div>
-            </div>
+              <span className={styles.linkArrow}>↗</span>
+            </a>
           ))}
         </div>
       </div>
