@@ -125,7 +125,7 @@ export default function App() {
   position: absolute;
   left: ${ic.x}%;
   top: ${ic.y}%;
-  opacity: 0.35;
+  opacity: 0.25;
   will-change: transform;
   filter: drop-shadow(0 0 6px ${ic.color}90) drop-shadow(0 0 14px ${ic.color}50);
   transition: opacity .3s;
